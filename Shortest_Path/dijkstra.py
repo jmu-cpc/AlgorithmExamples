@@ -31,31 +31,6 @@ def dijkstra(n, adj, start):
 
     return dist, parents
 
-def reconstruct_shortest_path(parents, start, target):
-    """Reconstruct the shortest path.
-    
-    NOTE: this is O(n). If you want to reconstruct all paths, it can be done more optimally
-    by doing all path reconstructions simultaneously using similar logic to that of below.
-
-    Args:
-        parents (int[]): a mapping of a shortest path where parents[i] = one step closer 
-            to the start from vertex_i
-        start (int): the starting node of the path
-        target (int): _description_
-
-    Returns:
-        int[]: a path from start -> target (or None if no path exists)
-    """
-    path = []
-    while parents[target] != -1:
-        path.append(target)
-        target = parents[target]
-    if path[-1] != start:
-        path = None # Unreachable target. Implies the graph is disconnected
-    else:
-        path.reverse()
-    return path
-
 
 def reconstruct_shortest_path(parents, start, target):
     """Reconstruct the shortest path from 'start' to 'target' using a parent map.
